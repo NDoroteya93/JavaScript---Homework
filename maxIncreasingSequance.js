@@ -2,25 +2,20 @@
 
 let arr = ['8', '7', '3', '2', '3', '4', '2', '2', '4'];
 
-function maximalIncreasingSequance(arr)
-{
+function maximalIncreasingSequance(arr) {
     let N = +arr.shift();
+    let array = arr.map(Number);
     let count = 1;
-    let result = [];
-    let lastCount;
-    for (let i = 0; i < N; i += 1)
-    {
-        if (+arr[i] === +arr[i + 1] - 1)
-        {
+    let result = 0;
+    for (let i = 0; i < N - 1; i += 1) {
+        if (array[i] < array[i + 1]) {
             count += 1;
-        } else
-        {
-            if (lastCount < count)
-            {
-                result[0] = count;
+            if (count > result) {
+                result = count;
             }
-            lastCount = count;
+        } else {
+            count = 1;
         }
     }
-    console.log(count);
+    return result;
 }
